@@ -1,4 +1,5 @@
 import { ZodType } from 'zod'
+import { SVGProps } from "react"
 
 export interface IApi<T, TCreate, TUpdate> {
     getAll(): Promise<T[]>
@@ -12,4 +13,10 @@ export interface ISchemas<T, TCreate, TUpdate> {
     object: ZodType<T>
     create: ZodType<TCreate>
     update: ZodType<TUpdate>
+}
+
+export interface IIcon extends SVGProps<SVGSVGElement> {
+    width?: number
+    height?: number
+    className?: string
 }

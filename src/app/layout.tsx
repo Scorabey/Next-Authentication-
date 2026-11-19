@@ -3,6 +3,8 @@ import { Geist, Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/shared/lib/utils";
 import Providers from "./provider";
+import { Header } from "@/widgets/header/header";
+import { useTheme } from "@/shared";
 
 const inter = Inter({subsets:['latin'],variable:'--font-sans'});
 
@@ -25,10 +27,14 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
+      suppressHydrationWarning
       className={cn("h-full", "antialiased", geistSans.variable, geistMono.variable, "font-sans", inter.variable)}
     >
       <body className="min-h-full flex flex-col">
-        <Providers>{children}</Providers>
+        <Providers>
+          <Header/>
+          {children}
+        </Providers>
       </body>
     </html>
   );

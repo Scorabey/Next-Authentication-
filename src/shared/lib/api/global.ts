@@ -2,8 +2,6 @@ import { type IApi, ISchemas } from "@/shared";
 import axios, { AxiosInstance, AxiosRequestConfig } from "axios";
 import { z } from "zod"
 
-import "dotenv/config"
-
 const BASE_URL = `${process.env.NEXT_PUBLIC_API_PROTOCOL}://${process.env.NEXT_PUBLIC_API_DOMAIN}:${process.env.NEXT_PUBLIC_API_PORT}`
 
 export class GlobalApi<T, TCreate, TUpdate> 
