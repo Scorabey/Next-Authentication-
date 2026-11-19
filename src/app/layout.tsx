@@ -4,7 +4,6 @@ import "./globals.css";
 import { cn } from "@/shared/lib/utils";
 import Providers from "./provider";
 import { Header } from "@/widgets/header/header";
-import { useTheme } from "@/shared";
 
 const inter = Inter({subsets:['latin'],variable:'--font-sans'});
 
@@ -24,6 +23,8 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
+  throw new Error("Test global error")
+
   return (
     <html
       lang="en"
