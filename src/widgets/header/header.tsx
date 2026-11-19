@@ -1,18 +1,26 @@
 import Link from "next/link"
-import { Button, ThemeToggle } from "@/shared"
+import { Button, cn, ThemeToggle } from "@/shared"
+import { cva } from "class-variance-authority"
 
-const CS_Header: string = "w-full h-fit fixed border-b border-b-border shadow-md shadow-foreground/20 backdrop-blur-lg bg-background/20"
-const CS_Container: string = "container mx-auto h-fit flex flex-row justify-between items-center"
-const CS_Button = "cursor-pointer"
-const CS_Button_Link = "h-full px-4 py-6 cursor-pointer font-medium text-md"
+const buttonVariants = cva(
+    "cursor-pointer",
+    {
+        variants: {
+            variant: {
+                default: "",
+                link: "h-full px-4 py-6 font-medium text-md"
+            }
+        }
+    }
+)
 
 export const Header = () => {
     return (
         <header
-            className={CS_Header}
+            className="w-full h-fit fixed border-b border-b-border shadow-md shadow-foreground/20 backdrop-blur-lg bg-background/20"
         >
             <div
-                className={CS_Container}
+                className="container mx-auto h-fit flex flex-row justify-between items-center"
             >
                 <div> {/* Logo */}
                     <Link
@@ -31,7 +39,7 @@ export const Header = () => {
                     >
                         <Button
                             variant={"link"}
-                            className={CS_Button_Link}
+                            className={cn(buttonVariants({ variant: "link" }))}
                         >
                             Home
                         </Button>
@@ -41,7 +49,7 @@ export const Header = () => {
                     >
                         <Button
                             variant={"link"}
-                            className={CS_Button_Link}
+                            className={cn(buttonVariants({ variant: "link" }))}
                         >
                             Community
                         </Button>
@@ -51,7 +59,7 @@ export const Header = () => {
                     >
                         <Button
                             variant={"link"}
-                            className={CS_Button_Link}
+                            className={cn(buttonVariants({ variant: "link" }))}
                         >
                             Profile
                         </Button>
@@ -62,18 +70,18 @@ export const Header = () => {
                 > {/* Butttons Group */}
                     <Button
                         variant={"secondary"}
-                        className={CS_Button}
+                        className={cn(buttonVariants({ variant: "default" }))}
                     >
                         Sign-In
                     </Button>
                     <Button
                         variant={"default"}
-                        className={CS_Button}
+                        className={cn(buttonVariants({ variant: "default" }))}
                     >
                         Sign-Up
                     </Button>
                     <ThemeToggle
-                        className={CS_Button}
+                        className={cn(buttonVariants({ variant: "default" }))}
                         variant={"secondary"}
                     />
                 </div>
