@@ -7,7 +7,7 @@ export default function NotFound() {
             className="table h-screen w-full"
         >
             <main
-                className="table-cell align-middle text-center mx-auto"
+                className="flex flex-col gap-4 min-w-full min-h-screen items-center justify-center"
             >
                 <span
                     className="flex flex-row gap-4 justify-center"
@@ -33,8 +33,8 @@ export default function NotFound() {
                         href={'/'}
                     >
                         <Button
-                            variant={"link"}
-                            className="cursor-pointer py-8"
+                            variant={"default"}
+                            className="cursor-pointer"
                         >
                             <h1
                                 className="text-2xl font-medium"

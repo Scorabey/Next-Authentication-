@@ -4,7 +4,7 @@ import { Button as ButtonPrimitive } from "@base-ui/react/button"
 import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "cn"
 import { useTheme } from "next-themes"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { MoonIcon, SunIcon } from "./icons"
 
 const themeIcons = cva("stroke-2 stroke-background")
@@ -70,11 +70,18 @@ function ThemeToggle({
   const [mounted, setMounted] = useState(false)
   const { resolvedTheme, setTheme } = useTheme()
 
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  if(!mounted) return <div className="h-6 w-6" />
+
   return (
     <ButtonPrimitive
       data-slot="button"
       className={cn(buttonVariants({ variant, size, className }), "rounded-full")}
       onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
+      aria-label="toggle-theme"
       {...props}
     >
       {resolvedTheme === "dark" ? <SunIcon className={"stroke-foreground"} /> : <MoonIcon className={"stroke-foreground"} />}

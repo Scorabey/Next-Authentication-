@@ -23,8 +23,6 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
-  throw new Error("Test global error")
-
   return (
     <html
       lang="en"
