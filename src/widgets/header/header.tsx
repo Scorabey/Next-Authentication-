@@ -1,6 +1,8 @@
 import Link from "next/link"
 import { Button, cn, ThemeToggle } from "@/shared"
 import { cva } from "class-variance-authority"
+import { SignIn } from '@/features/sign-in'
+import { SignUp } from '@/features/sign-up'
 
 const buttonVariants = cva(
     "cursor-pointer",
@@ -68,18 +70,18 @@ export const Header = () => {
                 <div
                     className="flex flex-row gap-2"
                 > {/* Butttons Group */}
-                    <Button
+                    <SignIn
                         variant={"secondary"}
                         className={cn(buttonVariants({ variant: "default" }))}
                     >
                         Sign-In
-                    </Button>
-                    <Button
+                    </SignIn>
+                    <SignUp
                         variant={"default"}
                         className={cn(buttonVariants({ variant: "default" }))}
                     >
                         Sign-Up
-                    </Button>
+                    </SignUp>
                     <ThemeToggle
                         className={cn(buttonVariants({ variant: "default" }))}
                         variant={"secondary"}
