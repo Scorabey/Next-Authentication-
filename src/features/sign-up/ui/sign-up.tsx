@@ -16,10 +16,11 @@ import {
   Input,
   Separator,
 } from "@/shared";
-import { HTMLAttributes, ReactNode } from "react";
+import { HTMLAttributes, ReactNode, useState } from "react";
 import { useForm, type SubmitHandler } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { SignUpDto, signUpSchema } from "../lib";
+import { SignUpApi, SignUpDto, signUpSchema } from "@/features/sign-up";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 interface buttonProps extends HTMLAttributes<HTMLButtonElement> {
   variant:
@@ -32,14 +33,20 @@ interface buttonProps extends HTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
 }
 
+const signUpApi = new SignUpApi()
+
 export const SignUp = ({
   className = "",
   children,
   variant = "default",
 }: buttonProps) => {
+  const queryClient = useQueryClient()
+  const [open, setOpen] = useState<boolean>(false)
+
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors }
   } = useForm<SignUpDto>({
     resolver: zodResolver(signUpSchema),
@@ -51,12 +58,28 @@ export const SignUp = ({
      }
   })
 
+  const mutation = useMutation({
+    mutationFn: (dto: Omit<SignUpDto, "confirm">) => signUpApi.signUp(dto),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['users'] })
+      closeDialog()
+    }
+  })
+
   const onSubmit: SubmitHandler<SignUpDto> = (data) => {
-    console.log(data)
+    mutation.mutate({
+      email: data.email,
+      password: data.password
+    })
+  }
+
+  const closeDialog = () => {
+    setOpen(false)
+    reset()
   }
 
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger
           render={
             <Button
