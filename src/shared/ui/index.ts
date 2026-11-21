@@ -6,3 +6,4 @@ export * from './dialog';
 export * from './field';
 export * from './label';
 export * from './input';
+export * from './spinner';
