@@ -6,6 +6,7 @@ import { cn } from "cn"
 import { useTheme } from "next-themes"
 import { useEffect, useState } from "react"
 import { MoonIcon, SunIcon } from "./icons"
+import { useBurgerToggle } from "../lib"
 
 const themeIcons = cva("stroke-2 stroke-background")
 
@@ -89,4 +90,25 @@ function ThemeToggle({
   )
 }
 
-export { Button, buttonVariants, ThemeToggle }
+function BurgerButton({
+  className,
+  variant = "default",
+  size = "default",
+  children,
+  ...props
+}: ButtonPrimitive.Props & VariantProps<typeof buttonVariants>) {
+  const toggle = useBurgerToggle((s) => s.toggle)
+
+  return (
+    <ButtonPrimitive
+      data-slot="button"
+      className={cn(buttonVariants({ variant, size, className }), "md:hidden")}
+      onClick={toggle}
+      {...props}
+    >
+      {children}
+    </ButtonPrimitive>
+  )
+}
+
+export { Button, buttonVariants, ThemeToggle, BurgerButton }

@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { Button, cn, ThemeToggle } from "@/shared"
+import { BurgerButton, Button, cn, ListIcon, ThemeToggle, useBurgerToggle } from "@/shared"
 import { cva } from "class-variance-authority"
 import { SignIn } from '@/features/sign-in'
 import { SignUp } from '@/features/sign-up'
@@ -17,14 +17,17 @@ const buttonVariants = cva(
 )
 
 export const Header = () => {
+
     return (
         <header
             className="w-full h-fit fixed border-b border-b-border shadow-md shadow-foreground/20 backdrop-blur-lg bg-background/20"
         >
             <div
-                className="container mx-auto h-fit flex flex-row justify-between items-center"
+                className="container mx-auto h-fit flex flex-row justify-between items-center px-4"
             >
-                <div> {/* Logo */}
+                <div
+                    className="py-4"
+                >
                     <Link
                         href={"/"}
                     >
@@ -34,8 +37,10 @@ export const Header = () => {
                             </g>
                         </svg>
                     </Link>
-                </div>
-                <nav> {/* Nav Panel */}
+                </div> {/* Logo */}
+                <nav
+                    className="hidden md:flex flex-row"
+                >
                     <Link
                         href={"/"}
                     >
@@ -66,10 +71,10 @@ export const Header = () => {
                             Profile
                         </Button>
                     </Link>
-                </nav>
+                </nav>{/* Nav Panel */}
                 <div
-                    className="flex flex-row gap-2"
-                > {/* Butttons Group */}
+                    className="hidden md:flex flex-row gap-2"
+                >
                     <SignIn
                         variant={"secondary"}
                         className={cn(buttonVariants({ variant: "default" }))}
@@ -86,7 +91,13 @@ export const Header = () => {
                         className={cn(buttonVariants({ variant: "default" }))}
                         variant={"secondary"}
                     />
-                </div>
+                </div> {/* Butttons Group */}
+
+                <BurgerButton
+                    variant={"outline"}
+                >
+                    <ListIcon className="stroke-foreground" />
+                </BurgerButton>
             </div>
         </header>
     )

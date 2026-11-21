@@ -4,6 +4,7 @@ import "./globals.css";
 import { cn } from "@/shared/lib/utils";
 import Providers from "./provider";
 import { Header } from "@/widgets/header/header";
+import { BurgerMenu } from "@/widgets";
 
 const inter = Inter({subsets:['latin'],variable:'--font-sans'});
 
@@ -32,6 +33,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body className="min-h-full flex flex-col">
         <Providers>
           <Header/>
+          <BurgerMenu/>
           {children}
         </Providers>
       </body>
