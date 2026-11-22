@@ -3,4 +3,4 @@
 import { createContext } from "react";
 import { IAuthContext } from "@/features/auth";
 
-export const AuthContext = createContext<IAuthContext | null>(null)
+export const SignUpContext = createContext<IAuthContext | null>(null)

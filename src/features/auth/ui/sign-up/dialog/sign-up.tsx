@@ -14,7 +14,7 @@ import {
   Spinner,
 } from "@/shared";
 import { type SubmitHandler } from 'react-hook-form'
-import { SignUpDto, useAuth } from "@/features/auth";
+import { SignUpDto, useSignUp } from "@/features/auth";
 import { buttonProps } from "@/features/auth";
 import { SignUpField } from "../field";
 
@@ -27,11 +27,11 @@ export const SignUp = ({
     mutation,
     form,
     hooks
-  } = useAuth()
+  } = useSignUp()
 
-  const { handleSubmit } = form.signUp
-  const { mutate, isPending } = mutation.signUp
-  const { setSignUpOpenDialog, signUpOpenDialog } = hooks.signUp
+  const { handleSubmit } = form
+  const { mutate, isPending } = mutation
+  const { setSignUpOpenDialog, signUpOpenDialog } = hooks
 
   const onSubmit: SubmitHandler<SignUpDto> = (data) => {
     mutate({
@@ -67,7 +67,7 @@ export const SignUp = ({
             </DialogDescription>
           </DialogHeader>
           <Separator />
-            <SignUpField form={form.signUp}/>
+            <SignUpField form={form}/>
           <Separator />
           <DialogFooter>
             <DialogClose render={<Button variant="outline">Close</Button>} />

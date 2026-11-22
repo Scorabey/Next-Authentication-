@@ -1,8 +1,8 @@
 import { useContext } from "react";
-import { AuthContext } from "./authContext";
+import { SignUpContext } from "./signUpContext";
 
-export function useAuth() {
-    const context = useContext(AuthContext);
+export function useSignUp() {
+    const context = useContext(SignUpContext);
 
     if(!context) {
         throw new Error('useAuth must be using on AuthProvider')

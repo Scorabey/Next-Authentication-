@@ -16,16 +16,10 @@ export interface buttonProps extends HTMLAttributes<HTMLButtonElement> {
 }
 
 export interface IAuthContext {
-  mutation: {
-    signUp: UseMutationResult<unknown, AxiosError, Omit<SignUpDto, "confirm">>;
-  }
-  form: {
-    signUp: UseFormReturn<SignUpDto>
-  },
+  mutation: UseMutationResult<unknown, AxiosError, Omit<SignUpDto, "confirm">>;
+  form: UseFormReturn<SignUpDto>,
   hooks: {
-    signUp: {
-      signUpOpenDialog: boolean,
-      setSignUpOpenDialog: Dispatch<SetStateAction<boolean>>
-    }
+    signUpOpenDialog: boolean,
+    setSignUpOpenDialog: Dispatch<SetStateAction<boolean>>
   }
 }

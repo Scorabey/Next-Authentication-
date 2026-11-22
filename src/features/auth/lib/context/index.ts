@@ -1,3 +1,3 @@
-export * from './authContext'
+export * from './sign-up'
+
 export * from './authProvider'
-export * from './useAuth'
