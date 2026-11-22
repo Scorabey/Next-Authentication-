@@ -3,6 +3,7 @@ import { AxiosError } from "axios";
 import { Dispatch, HTMLAttributes, ReactNode, SetStateAction } from "react";
 import { SignUpDto } from "../sign-up";
 import { UseFormReturn } from "react-hook-form";
+import { SignInDto } from "../sign-in";
 
 export interface buttonProps extends HTMLAttributes<HTMLButtonElement> {
   variant:
@@ -15,11 +16,20 @@ export interface buttonProps extends HTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
 }
 
-export interface IAuthContext {
+export interface ISignUpContext {
   mutation: UseMutationResult<unknown, AxiosError, Omit<SignUpDto, "confirm">>;
   form: UseFormReturn<SignUpDto>,
   hooks: {
     signUpOpenDialog: boolean,
     setSignUpOpenDialog: Dispatch<SetStateAction<boolean>>
+  }
+}
+
+export interface ISignInContext {
+  mutation: UseMutationResult<unknown, AxiosError, SignInDto>;
+  form: UseFormReturn<SignInDto>,
+  hooks: {
+    signInOpenDialog: boolean,
+    setSignInOpenDialog: Dispatch<SetStateAction<boolean>>
   }
 }

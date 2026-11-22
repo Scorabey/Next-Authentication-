@@ -9,13 +9,9 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SignUpContext } from "./signUpContext";
 
-interface AuthProviderProps {
-    children: ReactNode
-}
-
 const signUpApi = new SignUpApi()
 
-export function SignUpProvider({ children }: AuthProviderProps) {
+export function SignUpProvider({ children }: { children: ReactNode }) {
     const queryClient = useQueryClient()
     const [signUpOpenDialog, setSignUpOpenDialog] = useState<boolean>(false)
 

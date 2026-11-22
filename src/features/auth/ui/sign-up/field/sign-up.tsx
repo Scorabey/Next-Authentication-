@@ -92,7 +92,7 @@ export const SignUpField = ({ form }: ISignUpField) => {
             id="google-auth"
             variant={"default"}
             >
-            Sign-up with Google
+                Login with Google
             </Button>
         </Link>
         </FieldGroup>

@@ -70,7 +70,7 @@ export const SignUp = ({
             <SignUpField form={form}/>
           <Separator />
           <DialogFooter>
-            <DialogClose render={<Button variant="outline">Close</Button>} />
+            <DialogClose render={<Button variant="ghost">Close</Button>} />
             <Button 
               type="submit"
               variant={"default"}
