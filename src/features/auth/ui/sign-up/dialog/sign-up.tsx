@@ -1,0 +1,87 @@
+'use client'
+
+import {
+  Button,
+  Dialog,
+  DialogContent,
+  DialogTrigger,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+  DialogFooter,
+  DialogClose,
+  Separator,
+  Spinner,
+} from "@/shared";
+import { type SubmitHandler } from 'react-hook-form'
+import { SignUpDto, useAuth } from "@/features/auth";
+import { buttonProps } from "@/features/auth";
+import { SignUpField } from "../field";
+
+export const SignUp = ({
+  className = "",
+  children,
+  variant = "default",
+}: buttonProps) => {
+  const {
+    mutation,
+    form,
+    hooks
+  } = useAuth()
+
+  const { handleSubmit } = form.signUp
+  const { mutate, isPending } = mutation.signUp
+  const { setSignUpOpenDialog, signUpOpenDialog } = hooks.signUp
+
+  const onSubmit: SubmitHandler<SignUpDto> = (data) => {
+    mutate({
+      email: data.email,
+      password: data.password
+    })
+  }
+
+  return (
+    <Dialog open={signUpOpenDialog} onOpenChange={setSignUpOpenDialog}>
+        <DialogTrigger
+          render={
+            <Button
+              variant={variant}
+              className={className}
+            >
+              {children}
+            </Button>
+          }
+        />
+        <DialogContent>
+          <form 
+            onSubmit={handleSubmit(onSubmit)} 
+            className={"flex flex-col gap-4"}
+          >
+          <DialogHeader className="flex flex-col gap-1">
+            <DialogTitle className={"text-xl font-bold"}>
+              Create your account
+            </DialogTitle>
+            <DialogDescription className={"text-sm font-light"}>
+              Sign up in less than a minute and get full access to all features.
+              No credit card required.
+            </DialogDescription>
+          </DialogHeader>
+          <Separator />
+            <SignUpField form={form.signUp}/>
+          <Separator />
+          <DialogFooter>
+            <DialogClose render={<Button variant="outline">Close</Button>} />
+            <Button 
+              type="submit"
+              variant={"default"}
+              disabled={isPending}
+              className={isPending ? "cursor-progress" : ""}
+            >
+              {isPending ? <Spinner/> : 'Sign-Up'}
+            </Button>
+          </DialogFooter>
+          </form>
+        </DialogContent>
+    </Dialog>
+  );
+};
