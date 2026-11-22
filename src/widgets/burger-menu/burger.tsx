@@ -1,7 +1,7 @@
 'use client'
 
-import { SignIn } from "@/features/sign-in"
-import { SignUp } from "@/features/sign-up"
+import { SignIn } from "@/features/auth"
+import { SignUp } from "@/features/auth"
 import { Button, buttonVariants, cn, ThemeToggle, useBurgerToggle, XMark } from "@/shared"
 import Link from "next/link"
 import { useEffect } from "react"

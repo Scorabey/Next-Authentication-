@@ -1,8 +1,8 @@
 import Link from "next/link"
-import { BurgerButton, Button, cn, ListIcon, ThemeToggle, useBurgerToggle } from "@/shared"
+import { BurgerButton, Button, cn, ListIcon, ThemeToggle } from "@/shared"
 import { cva } from "class-variance-authority"
-import { SignIn } from '@/features/sign-in'
-import { SignUp } from '@/features/sign-up'
+import { SignIn } from '@/features/auth'
+import { SignUp } from '@/features/auth'
 
 const buttonVariants = cva(
     "cursor-pointer",

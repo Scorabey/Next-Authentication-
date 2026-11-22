@@ -20,24 +20,14 @@ import {
   EyeSlash,
   BASE_URL,
 } from "@/shared";
-import { HTMLAttributes, ReactNode, useState } from "react";
+import { useState } from "react";
 import { useForm, type SubmitHandler } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { SignUpApi, SignUpDto, signUpSchema } from "@/features/sign-up";
+import { SignUpApi, SignUpDto, signUpSchema } from "@/features/auth";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { AxiosError } from "axios";
 import Link from "next/link";
-
-interface buttonProps extends HTMLAttributes<HTMLButtonElement> {
-  variant:
-    | "default"
-    | "destructive"
-    | "ghost"
-    | "link"
-    | "outline"
-    | "secondary";
-  children: ReactNode;
-}
+import { buttonProps } from "@/features/auth";
 
 const signUpApi = new SignUpApi()
 
@@ -72,7 +62,7 @@ export const SignUp = ({
   const { mutate, isPending } = useMutation<unknown, AxiosError, Omit<SignUpDto, "confirm">>({
     mutationFn: (dto: Omit<SignUpDto, "confirm">) => signUpApi.signUp(dto),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['users'] })
+      queryClient.invalidateQueries({ queryKey: ['me'] })
       closeDialog()
     },
     onError: (error) => {

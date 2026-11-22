@@ -1,6 +1,6 @@
 import axios from "axios"
 import { AxiosInstance, AxiosRequestConfig } from "axios"
-import { ISignUpApi, SignUpDto } from "@/features/sign-up"
+import { ISignUpApi, SignUpDto } from "@/features/auth"
 import { IUser } from "@/entities/user"
 import { BASE_URL } from "@/shared"
 

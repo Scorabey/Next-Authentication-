@@ -1,6 +1,5 @@
 'use client'
 
-import { useEffect } from "react"
 import { Button, Separator } from "@/shared"
 import { cn } from "@/shared/lib/utils";
 
@@ -10,10 +9,6 @@ interface IGlobalErrorProps {
 }
 
 export default function GlobalError({ error, retry }: IGlobalErrorProps) {
-    useEffect(() => {
-        console.error(error)
-    }, [error])
-
     return (
         <html
             className={cn("h-full", "antialiased", "font-sans")}
