@@ -2,8 +2,7 @@ import axios from "axios"
 import { AxiosInstance, AxiosRequestConfig } from "axios"
 import { ISignUpApi, SignUpDto } from "@/features/sign-up"
 import { IUser } from "@/entities/user"
-
-const BASE_URL = `${process.env.NEXT_PUBLIC_API_PROTOCOL}://${process.env.NEXT_PUBLIC_API_DOMAIN}:${process.env.NEXT_PUBLIC_API_PORT}`
+import { BASE_URL } from "@/shared"
 
 export class SignUpApi
     implements ISignUpApi

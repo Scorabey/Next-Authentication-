@@ -17,10 +17,9 @@ const buttonVariants = cva(
 )
 
 export const Header = () => {
-
     return (
         <header
-            className="w-full h-fit fixed border-b border-b-border shadow-md shadow-foreground/20 backdrop-blur-lg bg-background/20"
+            className="fixed top-0 left-0 right-0 border-b border-b-border shadow-md shadow-foreground/20 backdrop-blur-lg bg-background/20"
         >
             <div
                 className="container mx-auto h-fit flex flex-row justify-between items-center px-4"
