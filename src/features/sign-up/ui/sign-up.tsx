@@ -18,6 +18,7 @@ import {
   Spinner,
   Eye,
   EyeSlash,
+  BASE_URL,
 } from "@/shared";
 import { HTMLAttributes, ReactNode, useState } from "react";
 import { useForm, type SubmitHandler } from 'react-hook-form'
@@ -25,6 +26,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { SignUpApi, SignUpDto, signUpSchema } from "@/features/sign-up";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { AxiosError } from "axios";
+import Link from "next/link";
 
 interface buttonProps extends HTMLAttributes<HTMLButtonElement> {
   variant:
@@ -201,12 +203,17 @@ export const SignUp = ({
               <p className="text-base text-red-400" style={{ display: errors.confirm ? "block" : "none" }}>{errors.confirm ? errors.confirm.message : ""}</p>
               <p className="text-base text-red-400" style={{ display: errors.form ? "block" : "none" }}>{errors.form ? errors.form.message : ""}</p>
             </Field>
-            <Button
-              id="google-auth"
-              variant={"default"}
+            <Link
+              href={`${BASE_URL}/auth/oidc/google/login?redirectTo=http://localhost:3000/ `}
             >
-              Sign-up with Google
-            </Button>
+              <Button
+                className={"w-full"}
+                id="google-auth"
+                variant={"default"}
+              >
+                Sign-up with Google
+              </Button>
+            </Link>
           </FieldGroup>
           <Separator />
           <DialogFooter>
