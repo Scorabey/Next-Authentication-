@@ -10,6 +10,7 @@ export const SignIn = ({
   className = "",
   children,
   variant = "default",
+  title,
 }: buttonProps) => {
   const { form, hooks, mutation } = useSignIn()
   const { signInOpenDialog, setSignInOpenDialog } = hooks
@@ -30,6 +31,7 @@ export const SignIn = ({
             <Button
               variant={variant}
               className={className}
+              title={title}
             >
               {children}
             </Button>

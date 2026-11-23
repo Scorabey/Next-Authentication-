@@ -32,6 +32,7 @@ export const Header = () => {
                 >
                     <Link
                         href={"/"}
+                        title="Logo"
                     >
                         <svg xmlns="http://www.w3.org/2000/svg" className="fill-foreground" width="123" height="40" viewBox="0 0 123 40" fill="none" id="Logo">
                             <g id="logotype">
@@ -47,18 +48,21 @@ export const Header = () => {
                     <SignIn
                         variant={"secondary"}
                         className={cn(buttonVariants({ variant: "default" }))}
+                        title="Open sign-in dialog menu"
                     >
                         Sign-In
                     </SignIn>
                     <SignUp
                         variant={"default"}
                         className={cn(buttonVariants({ variant: "default" }))}
+                        title="Open sign-up dialog menu"
                     >
                         Sign-Up
                     </SignUp>
                     <ThemeToggle
                         className={cn(buttonVariants({ variant: "default" }))}
                         variant={"secondary"}
+                        title="Switch theme"
                     />
                 </div> {/* Butttons Group */}
 
