@@ -22,6 +22,7 @@ export const SignUp = ({
   className = "",
   children,
   variant = "default",
+  title
 }: buttonProps) => {
   const {
     mutation,
@@ -47,6 +48,7 @@ export const SignUp = ({
             <Button
               variant={variant}
               className={className}
+              title={title}
             >
               {children}
             </Button>
