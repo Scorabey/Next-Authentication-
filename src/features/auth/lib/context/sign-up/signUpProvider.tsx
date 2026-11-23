@@ -8,12 +8,14 @@ import { AxiosError } from "axios";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SignUpContext } from "./signUpContext";
+import { useRouter } from "next/navigation";
 
 const signUpApi = new SignUpApi()
 
 export function SignUpProvider({ children }: { children: ReactNode }) {
     const queryClient = useQueryClient()
     const [signUpOpenDialog, setSignUpOpenDialog] = useState<boolean>(false)
+    const router = useRouter()
 
     const signUpForm = useForm<SignUpDto>({
         resolver: zodResolver(signUpSchema),
@@ -57,6 +59,7 @@ export function SignUpProvider({ children }: { children: ReactNode }) {
   const closeDialog = () => {
     setSignUpOpenDialog(false)
     signUpForm.reset()
+    router.push('/')
   }
 
     const value = useMemo(() => ({

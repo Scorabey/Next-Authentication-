@@ -1,11 +1,14 @@
 import Link from "next/link"
-import { BurgerButton, Button, cn, ListIcon, ThemeToggle } from "@/shared"
+import { BurgerButton, cn, ListIcon, ThemeToggle } from "@/shared"
 import { cva } from "class-variance-authority"
 import { SignIn } from '@/features/auth'
 import { SignUp } from '@/features/auth'
+import { NavPanel } from "@/shared/ui/nav-panel"
+
+const buttonRootStyle = "cursor-pointer";
 
 const buttonVariants = cva(
-    "cursor-pointer",
+    buttonRootStyle,
     {
         variants: {
             variant: {
@@ -37,40 +40,7 @@ export const Header = () => {
                         </svg>
                     </Link>
                 </div> {/* Logo */}
-                <nav
-                    className="hidden md:flex flex-row"
-                >
-                    <Link
-                        href={"/"}
-                    >
-                        <Button
-                            variant={"link"}
-                            className={cn(buttonVariants({ variant: "link" }))}
-                        >
-                            Home
-                        </Button>
-                    </Link>
-                    <Link
-                        href={"/community"}
-                    >
-                        <Button
-                            variant={"link"}
-                            className={cn(buttonVariants({ variant: "link" }))}
-                        >
-                            Community
-                        </Button>
-                    </Link>
-                    <Link
-                        href={"/profile"}
-                    >
-                        <Button
-                            variant={"link"}
-                            className={cn(buttonVariants({ variant: "link" }))}
-                        >
-                            Profile
-                        </Button>
-                    </Link>
-                </nav>{/* Nav Panel */}
+                <NavPanel className={cn(buttonVariants({ variant: "link" }))}/>
                 <div
                     className="hidden md:flex flex-row gap-2"
                 >

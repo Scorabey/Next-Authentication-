@@ -53,7 +53,7 @@ export const SignIn = ({
             <Separator/>
             <DialogFooter>
               <Button variant={"ghost"} onClick={() => setSignInOpenDialog(false)}>Close</Button>
-              <Button 
+              <Button
                 type="submit"
                 variant={"default"}
                 disabled={isPending}

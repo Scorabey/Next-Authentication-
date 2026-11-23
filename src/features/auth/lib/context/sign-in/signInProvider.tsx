@@ -8,12 +8,14 @@ import { SignInDto, signInSchema } from "../../schemas";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { AxiosError } from "axios";
+import { useRouter } from "next/navigation";
 
 const signInApi = new SignInApi()
 
 export function SignInProvider({ children }: { children: ReactNode }) {
     const queryClient = useQueryClient()
     const [signInOpenDialog, setSignInOpenDialog] = useState<boolean>(false)
+    const router = useRouter()
 
     const signInform = useForm<SignInDto>({
         resolver: zodResolver(signInSchema),
@@ -44,6 +46,12 @@ export function SignInProvider({ children }: { children: ReactNode }) {
                     message: "Too many request"
                     })
                     break
+                case 401: 
+                    signInform.setError("form", {
+                    type: "server",
+                    message: "Invalid email or password"
+                    })
+                    break
                 default:
                     signInform.setError("form", {
                     type: "server",
@@ -56,6 +64,7 @@ export function SignInProvider({ children }: { children: ReactNode }) {
     const closeDialog = () => {
         setSignInOpenDialog(false)
         signInform.reset()
+        router.push('/')
     }
 
     const value = useMemo(() => ({ 

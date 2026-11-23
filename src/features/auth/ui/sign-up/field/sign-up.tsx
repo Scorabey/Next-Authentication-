@@ -1,6 +1,7 @@
+'use client'
+
 import { SignUpDto } from "@/features/auth/lib"
 import { BASE_URL, Button, Eye, EyeSlash, Field, FieldGroup, Input, Label } from "@/shared"
-import { UseMutationResult } from "@tanstack/react-query"
 import Link from "next/link"
 import { useState } from "react"
 import { UseFormReturn } from "react-hook-form"

@@ -57,6 +57,7 @@ export const SignInField = ({ form }: ISignInField) => {
             </Button>
             </div>
             <p className="text-base text-red-400" style={{ display: errors.password ? "block" : "none" }}>{errors.password ? errors.password.message : ""}</p>
+            <p className="text-base text-red-400" style={{ display: errors.form ? "block" : "none" }}>{errors.form ? errors.form.message : ""}</p>
         </Field>
         <Link
             href={`${BASE_URL}/auth/oidc/google/login?redirectTo=http://localhost:3000/ `}
