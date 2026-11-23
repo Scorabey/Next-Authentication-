@@ -38,12 +38,14 @@ export const SignUpMenu = () => {
             >
                 <Link
                     href={'/auth/sign-in'}
+                    title="Go to sign-in"
                 >
                     <Button variant={"ghost"}>Sign-In</Button>
                 </Link>
                 <Button
                     type="submit"
                     variant={"default"}
+                    title="Sign-up application"
                     disabled={isPending}
                     className={isPending ? "cursor-progress" : ""}
                 >

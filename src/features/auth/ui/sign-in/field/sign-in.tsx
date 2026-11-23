@@ -1,7 +1,7 @@
 'use client'
 
 import { SignInDto } from "@/features/auth"
-import { BASE_URL, Button, Eye, EyeSlash, Field, FieldGroup, Input, Label } from "@/shared"
+import { BASE_URL, Button, Eye, EyeSlash, Field, FieldGroup, Input, Label, OIDCGroup } from "@/shared"
 import Link from "next/link"
 import { useState } from "react"
 import { UseFormReturn } from "react-hook-form"
@@ -28,6 +28,7 @@ export const SignInField = ({ form }: ISignInField) => {
             id="email"
             placeholder="example@gmail.com"
             aria-invalid={errors.email ? "true" : "false"}
+            title="Enter your email"
             {...register("email", { required: "Email is required" })}
             />
             <p className="text-base text-red-400" style={{ display: errors.email ? "block" : "none" }}>{errors.email ? errors.email.message : ""}</p>
@@ -44,6 +45,7 @@ export const SignInField = ({ form }: ISignInField) => {
                 type={eye.passwordEye ? "text" : "password"}
                 placeholder="Enter password..."
                 aria-invalid={errors.password ? "true" : "false"}
+                title="Enter your password"
                 {...register("password", { required: "Password is required" })}
             />
             <Button
@@ -59,17 +61,7 @@ export const SignInField = ({ form }: ISignInField) => {
             <p className="text-base text-red-400" style={{ display: errors.password ? "block" : "none" }}>{errors.password ? errors.password.message : ""}</p>
             <p className="text-base text-red-400" style={{ display: errors.form ? "block" : "none" }}>{errors.form ? errors.form.message : ""}</p>
         </Field>
-        <Link
-            href={`${BASE_URL}/auth/oidc/google/login?redirectTo=http://localhost:3000/ `}
-        >
-            <Button
-            className={"w-full"}
-            id="google-auth"
-            variant={"default"}
-            >
-                Login with Google
-            </Button>
-        </Link>
+        <OIDCGroup className="w-full flex justify-center items-center gap-2"/>
         </FieldGroup>
     )
 }

@@ -52,10 +52,11 @@ export const SignIn = ({
             <SignInField form={form}/>
             <Separator/>
             <DialogFooter>
-              <Button variant={"ghost"} onClick={() => setSignInOpenDialog(false)}>Close</Button>
+              <Button variant={"ghost"} onClick={() => setSignInOpenDialog(false)} title="Close dialog window">Close</Button>
               <Button
                 type="submit"
                 variant={"default"}
+                title="Sign-in application"
                 disabled={isPending}
                 className={isPending ? "cursor-progress" : ""}
               >
