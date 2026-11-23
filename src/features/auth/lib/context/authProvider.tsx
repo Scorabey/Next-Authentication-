@@ -1,12 +1,12 @@
-import { ReactNode, useMemo } from "react";
-import { AuthContext } from "./authContext";
+import { ReactNode } from "react"
+import { SignUpProvider, SignInProvider } from "@/features/auth"
 
-interface AuthProviderProps {
-    children: ReactNode
-}
-
-export function AuthProvider({ children }: AuthProviderProps) {
-    const value = useMemo(() => ({  }), [])
-
-    return <AuthContext.Provider value={value} >{children}</AuthContext.Provider>
+export const AuthProvider = ({ children }: { children: ReactNode }) => {
+    return (
+        <SignUpProvider>
+            <SignInProvider>
+                {children}
+            </SignInProvider>
+        </SignUpProvider>
+    )
 }
