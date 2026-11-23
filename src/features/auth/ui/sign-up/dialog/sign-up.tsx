@@ -70,10 +70,11 @@ export const SignUp = ({
             <SignUpField form={form}/>
           <Separator />
           <DialogFooter>
-            <DialogClose render={<Button variant="ghost">Close</Button>} />
+            <DialogClose render={<Button variant="ghost" title="Close dialog window">Close</Button>} />
             <Button 
               type="submit"
               variant={"default"}
+              title="Sign-up application"
               disabled={isPending}
               className={isPending ? "cursor-progress" : ""}
             >
