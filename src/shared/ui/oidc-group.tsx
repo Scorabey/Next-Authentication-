@@ -17,7 +17,7 @@ export const OIDCGroup = ({ className }: { className?: string }) => {
                 <Button
                 className={'rounded-full cursor-pointer'}
                 id="google-auth"
-                variant={"ghost"}
+                variant={"outline"}
                 >
                     <Google className="stroke-foreground fill-foreground" />
                 </Button>

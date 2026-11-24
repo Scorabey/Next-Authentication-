@@ -8,3 +8,4 @@ export * from './label';
 export * from './input';
 export * from './spinner';
 export * from './oidc-group';
+export * from './card';
