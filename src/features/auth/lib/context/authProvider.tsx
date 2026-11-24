@@ -1,11 +1,13 @@
 import { ReactNode } from "react"
-import { SignUpProvider, SignInProvider } from "@/features/auth"
+import { SignUpProvider, SignInProvider, ForgotProvider } from "@/features/auth"
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
     return (
         <SignUpProvider>
             <SignInProvider>
-                {children}
+                <ForgotProvider>
+                    {children}
+                </ForgotProvider>
             </SignInProvider>
         </SignUpProvider>
     )

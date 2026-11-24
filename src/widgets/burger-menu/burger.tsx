@@ -2,7 +2,7 @@
 
 import { SignIn } from "@/features/auth"
 import { SignUp } from "@/features/auth"
-import { Button, buttonVariants, cn, ThemeToggle, useBurgerToggle, XMark } from "@/shared"
+import { Button, cn, ThemeToggle, useBurgerToggle, XMark } from "@/shared"
 import Link from "next/link"
 import { useEffect } from "react"
 
@@ -10,6 +10,8 @@ const links = [
     { href: "/", label: "Home" },
     { href: "/community", label: "Community" },
     { href: "/profile", label: "Profile" },
+    { href: "/auth/sign-in", label: "Sign-in" },
+    { href: "/auth/sign-up", label: "Sign-up" },
 ]
 
 export const BurgerMenu = () => {

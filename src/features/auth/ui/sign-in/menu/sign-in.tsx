@@ -7,9 +7,10 @@ import { SignInField } from "../field"
 import { SubmitHandler } from "react-hook-form"
 
 export const SignInMenu = () => {
-    const { mutation, form } = useSignIn()
+    const { mutation, form, hooks } = useSignIn()
     const { isPending, mutate } = mutation;
     const { handleSubmit } = form;
+    const { setSignInOpenDialog } = hooks
 
     const onSubmit: SubmitHandler<SignInDto> = (data) => {
     mutate({
@@ -31,7 +32,7 @@ export const SignInMenu = () => {
                 <FieldDescription>Enter your email and password to access your dashboard.</FieldDescription>
             </div>
             <FieldSeparator/>
-            <SignInField form={form}/>
+            <SignInField form={form} setSignInOpenDialog={setSignInOpenDialog}/>
             <FieldSeparator/>
             <div
                 className="flex flex-row gap-1 w-full justify-end"

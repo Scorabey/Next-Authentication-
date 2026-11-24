@@ -3,14 +3,15 @@
 import { SignInDto } from "@/features/auth"
 import { BASE_URL, Button, Eye, EyeSlash, Field, FieldGroup, Input, Label, OIDCGroup } from "@/shared"
 import Link from "next/link"
-import { useState } from "react"
+import { Dispatch, SetStateAction, useState } from "react"
 import { UseFormReturn } from "react-hook-form"
 
 interface ISignInField {
     form: UseFormReturn<SignInDto>
+    setSignInOpenDialog: Dispatch<SetStateAction<boolean>>
 }
 
-export const SignInField = ({ form }: ISignInField) => {
+export const SignInField = ({ form, setSignInOpenDialog }: ISignInField) => {
     const [eye, setEye] = useState({
         passwordEye: false,
         confirmEye: false,
@@ -19,7 +20,9 @@ export const SignInField = ({ form }: ISignInField) => {
     const { register, formState: { errors } } = form
 
     return (
-        <FieldGroup>
+        <FieldGroup
+            className="flex flex-col gap-3"
+        >
         <Field>
             <Label htmlFor="email">
             Email{errors.email?.type === "required" ? <span className="text-base text-red-400">*</span> : ""}
@@ -27,11 +30,9 @@ export const SignInField = ({ form }: ISignInField) => {
             <Input
             id="email"
             placeholder="example@gmail.com"
-            aria-invalid={errors.email ? "true" : "false"}
             title="Enter your email"
             {...register("email", { required: "Email is required" })}
             />
-            <p className="text-base text-red-400" style={{ display: errors.email ? "block" : "none" }}>{errors.email ? errors.email.message : ""}</p>
         </Field>
         <Field>
             <Label htmlFor="password">
@@ -44,7 +45,6 @@ export const SignInField = ({ form }: ISignInField) => {
                 id="password"
                 type={eye.passwordEye ? "text" : "password"}
                 placeholder="Enter password..."
-                aria-invalid={errors.password ? "true" : "false"}
                 title="Enter your password"
                 {...register("password", { required: "Password is required" })}
             />
@@ -58,8 +58,18 @@ export const SignInField = ({ form }: ISignInField) => {
                 {eye.passwordEye ? <Eye className="stroke-foreground size-4"/> : <EyeSlash className="stroke-foreground size-4"/>}
             </Button>
             </div>
-            <p className="text-base text-red-400" style={{ display: errors.password ? "block" : "none" }}>{errors.password ? errors.password.message : ""}</p>
-            <p className="text-base text-red-400" style={{ display: errors.form ? "block" : "none" }}>{errors.form ? errors.form.message : ""}</p>
+            <Link
+                href={'/auth/forgot'}
+                className="!w-fit"
+            >
+                <Button 
+                    variant={"link"} 
+                    className={"cursor-pointer"} 
+                    onClick={() => setSignInOpenDialog(false)}
+                >
+                    Forgout password?
+                </Button>
+            </Link>
         </Field>
         <OIDCGroup className="w-full flex justify-center items-center gap-2"/>
         </FieldGroup>
