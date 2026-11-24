@@ -1,6 +1,6 @@
 'use client'
 
-import { Button, Card, CardAction, CardContent, CardDescription, CardFooter, CardHeader, CardTitle, FieldDescription, FieldLegend, FieldSeparator, FieldSet, FieldTitle, Spinner } from "@/shared"
+import { Button, Card, CardAction, CardContent, CardDescription, CardFooter, CardHeader, CardTitle, Spinner } from "@/shared"
 import { ForgotField } from "../field"
 import Link from "next/link"
 import { ForgotDto, useForgot } from "@/features/auth/lib"
@@ -12,9 +12,9 @@ export const ForgotMenu = () => {
     const { mutate, isPending } = mutation;
         
     const onSubmit: SubmitHandler<ForgotDto> = (data) => {
-    mutate({
-        email: data.email
-    })
+        mutate({
+            email: data.email
+        })
     }
 
     return (

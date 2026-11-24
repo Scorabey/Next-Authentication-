@@ -21,7 +21,7 @@ export const SignUpField = ({ form }: ISignUpField) => {
         <FieldGroup>
         <Field>
             <Label htmlFor="email">
-            Email{errors.email?.type === "required" ? <span className="text-base text-red-400">*</span> : ""}
+            Email<span className="text-base text-red-400">*</span>
             </Label>
             <Input
             id="email"
@@ -34,7 +34,7 @@ export const SignUpField = ({ form }: ISignUpField) => {
         </Field>
         <Field>
             <Label htmlFor="password">
-            Password{errors.password?.type === "required" ? <span className="text-base text-red-400">*</span> : ""}
+            Password<span className="text-base text-red-400">*</span>
             </Label>
             <div
             className="flex flex-row gap-1"
@@ -61,7 +61,7 @@ export const SignUpField = ({ form }: ISignUpField) => {
         </Field>
         <Field>
             <Label htmlFor="confirm">
-                Confirm{errors.email?.type === "required" ? <span className="text-base text-red-400">*</span> : ""}
+                Confirm<span className="text-base text-red-400">*</span>
             </Label>
             <div
             className="flex flex-row gap-1"

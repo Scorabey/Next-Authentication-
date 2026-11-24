@@ -1,2 +1,4 @@
-export * from './sign-in/dialog';
-export * from './sign-up/dialog';
+export * from './sign-in';
+export * from './sign-up';
+export * from './forgot';
+export * from './reset';

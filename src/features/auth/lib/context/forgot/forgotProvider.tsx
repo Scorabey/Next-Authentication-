@@ -9,6 +9,7 @@ import { AxiosError } from "axios";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
+import { INPUT_MODE } from "@/shared";
 
 const forgotApi = new ForgotApi()
 
@@ -17,7 +18,7 @@ export function ForgotProvider({ children }: { children: ReactNode }) {
 
     const forgotForm = useForm<ForgotDto>({
         resolver: zodResolver(forgotSchema),
-        mode: "onTouched",
+        mode: INPUT_MODE,
         defaultValues: { 
         email: ""
         }

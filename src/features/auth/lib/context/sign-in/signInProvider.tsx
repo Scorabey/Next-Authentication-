@@ -9,6 +9,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { AxiosError } from "axios";
 import { useRouter } from "next/navigation";
+import { INPUT_MODE } from "@/shared";
 
 const signInApi = new SignInApi()
 
@@ -19,7 +20,7 @@ export function SignInProvider({ children }: { children: ReactNode }) {
 
     const signInform = useForm<SignInDto>({
         resolver: zodResolver(signInSchema),
-        mode: "onTouched",
+        mode: INPUT_MODE,
         defaultValues: { 
         email: "",
         password: ""
@@ -33,7 +34,8 @@ export function SignInProvider({ children }: { children: ReactNode }) {
             closeDialog()
         },
         onError: (error) => {
-                switch(error.response?.status) {
+            console.log("status", error.response?.status)
+            switch(error.response?.status) {
                 case 409:
                     signInform.setError("email", {
                     type: "server",
@@ -47,7 +49,7 @@ export function SignInProvider({ children }: { children: ReactNode }) {
                     })
                     break
                 case 401: 
-                    signInform.setError("form", {
+                    signInform.setError("email", {
                     type: "server",
                     message: "Invalid email or password"
                     })
@@ -57,7 +59,7 @@ export function SignInProvider({ children }: { children: ReactNode }) {
                     type: "server",
                     message: "Something went wrong..."
                     })
-                }
+            }
             }
         })
 

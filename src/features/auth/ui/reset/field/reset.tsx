@@ -1,0 +1,76 @@
+'use client'
+
+import { ResetDto } from "@/features/auth/lib"
+import { Button, Eye, EyeSlash, Field, FieldGroup, Input, Label } from "@/shared"
+import { useState } from "react"
+import { UseFormReturn } from "react-hook-form"
+
+export const ResetField = ({ form }: { form:UseFormReturn<ResetDto> }) => {
+    const [eye, setEye] = useState({
+        passwordEye: false,
+        confirmEye: false,
+    })
+
+    const { register, formState: { errors } } = form
+
+    return (
+        <FieldGroup>
+        <Field>
+            <Label htmlFor="password">
+            Password<span className="text-base text-red-400">*</span>
+            </Label>
+            <div
+            className="flex flex-row gap-1"
+            >
+            <Input
+                id="password"
+                type={eye.passwordEye ? "text" : "password"}
+                placeholder="Enter password..."
+                aria-invalid={errors.password ? "true" : "false"}
+                title="Enter your password"
+                {...register("password", { required: "Password is required" })}
+            />
+            <Button
+                variant={"ghost"}
+                onClick={() => setEye(prev => ({
+                confirmEye: prev.confirmEye,
+                passwordEye: !prev.passwordEye
+                }))}
+            >
+                {eye.passwordEye ? <Eye className="stroke-foreground size-4"/> : <EyeSlash className="stroke-foreground size-4"/>}
+            </Button>
+            </div>
+            <p className="text-base text-red-400" style={{ display: errors.password ? "block" : "none" }}>{errors.password ? errors.password.message : ""}</p>
+        </Field>
+        <Field>
+            <Label htmlFor="confirm">
+                Confirm<span className="text-base text-red-400">*</span>
+            </Label>
+            <div
+            className="flex flex-row gap-1"
+            >
+            <Input
+                id="confirm"
+                type={eye.confirmEye ? "text" : "password"}
+                placeholder="Confirm password..."
+                aria-invalid={errors.password ? "true" : "false"}
+                title="Confirm the password"
+                {...register("confirm", { required: "Password is required" })}
+            />
+            <Button
+                variant={"ghost"}
+                onClick={() => setEye(prev => ({
+                confirmEye: !prev.confirmEye,
+                passwordEye: prev.passwordEye
+                }))}
+            >
+                {eye.confirmEye ? <Eye className="stroke-foreground size-4"/> : <EyeSlash className="stroke-foreground size-4"/>}
+            </Button>
+            </div>
+            <p className="text-base text-red-400" style={{ display: errors.confirm ? "block" : "none" }}>{errors.confirm ? errors.confirm.message : ""}</p>
+            <p className="text-base text-red-400" style={{ display: errors.form ? "block" : "none" }}>{errors.form ? errors.form.message : ""}</p>
+        </Field>
+        <p className="text-base text-red-400" style={{ display: errors.form ? "block" : "none" }}>{errors.form ? errors.form.message : ""}</p>
+        </FieldGroup>
+    )
+}
