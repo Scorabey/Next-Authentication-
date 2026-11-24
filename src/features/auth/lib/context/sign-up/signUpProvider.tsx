@@ -9,6 +9,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SignUpContext } from "./signUpContext";
 import { useRouter } from "next/navigation";
+import { INPUT_MODE } from "@/shared";
 
 const signUpApi = new SignUpApi()
 
@@ -19,7 +20,7 @@ export function SignUpProvider({ children }: { children: ReactNode }) {
 
     const signUpForm = useForm<SignUpDto>({
         resolver: zodResolver(signUpSchema),
-        mode: "onTouched",
+        mode: INPUT_MODE,
         defaultValues: { 
         email: "",
         password: "",

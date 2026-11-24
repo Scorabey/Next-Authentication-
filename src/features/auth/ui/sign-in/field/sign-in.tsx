@@ -25,7 +25,7 @@ export const SignInField = ({ form, setSignInOpenDialog }: ISignInField) => {
         >
         <Field>
             <Label htmlFor="email">
-            Email{errors.email?.type === "required" ? <span className="text-base text-red-400">*</span> : ""}
+            Email<span className="text-base text-red-400">*</span>
             </Label>
             <Input
             id="email"
@@ -33,10 +33,11 @@ export const SignInField = ({ form, setSignInOpenDialog }: ISignInField) => {
             title="Enter your email"
             {...register("email", { required: "Email is required" })}
             />
+            <p className="text-base text-red-400" style={{ display: errors.email ? "block" : "none" }}>{errors.email ? errors.email.message : ""}</p>
         </Field>
         <Field>
             <Label htmlFor="password">
-            Password{errors.password?.type === "required" ? <span className="text-base text-red-400">*</span> : ""}
+            Password<span className="text-base text-red-400">*</span>
             </Label>
             <div
             className="flex flex-row gap-1"
@@ -71,6 +72,7 @@ export const SignInField = ({ form, setSignInOpenDialog }: ISignInField) => {
                 </Button>
             </Link>
         </Field>
+        <p className="text-base text-red-400" style={{ display: errors.form ? "block" : "none" }}>{errors.form ? errors.form.message : ""}</p>
         <OIDCGroup className="w-full flex justify-center items-center gap-2"/>
         </FieldGroup>
     )

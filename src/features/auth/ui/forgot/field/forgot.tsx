@@ -9,7 +9,7 @@ export const ForgotField = ({ form }: { form:UseFormReturn<ForgotDto> }) => {
         <FieldGroup>
         <Field>
             <Label htmlFor="email">
-            Email{errors.email?.type === "required" ? <span className="text-base text-red-400">*</span> : ""}
+            Email<span className="text-base text-red-400">*</span>
             </Label>
             <Input
             id="email"

@@ -5,6 +5,7 @@ import { SignUpDto } from "../sign-up";
 import { UseFormReturn } from "react-hook-form";
 import { SignInDto } from "../sign-in";
 import { ForgotDto } from "../forgot";
+import { ResetDto } from "../reset";
 
 export interface buttonProps extends HTMLAttributes<HTMLButtonElement> {
   variant:
@@ -38,4 +39,9 @@ export interface ISignInContext {
 export interface IForgotContext {
   mutation: UseMutationResult<unknown, AxiosError, ForgotDto>;
   form: UseFormReturn<ForgotDto>
+}
+
+export interface IResetContext {
+  mutation: UseMutationResult<unknown, AxiosError, Omit<ResetDto, "confirm">>;
+  form: UseFormReturn<ResetDto>
 }
