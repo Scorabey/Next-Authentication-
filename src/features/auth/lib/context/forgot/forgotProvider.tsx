@@ -26,6 +26,7 @@ export function ForgotProvider({ children }: { children: ReactNode }) {
     const mutation = useMutation<unknown, AxiosError, ForgotDto>({
         mutationFn: (dto: ForgotDto) => forgotApi.forgot(dto),
         onSuccess: () => {
+            forgotForm.reset()
             router.push('/auth/sign-in')
         },
         onError: (error) => {
