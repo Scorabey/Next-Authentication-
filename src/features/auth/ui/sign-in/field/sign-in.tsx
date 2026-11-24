@@ -19,7 +19,7 @@ export const SignInField = ({ form }: ISignInField) => {
     const { register, formState: { errors } } = form
 
     return (
-        <FieldGroup>
+        <FieldGroup className="flex flex-col gap-4">
         <Field>
             <Label htmlFor="email">
             Email{errors.email?.type === "required" ? <span className="text-base text-red-400">*</span> : ""}
