@@ -1,8 +1,7 @@
 'use client'
 
 import { SignUpDto } from "@/features/auth/lib"
-import { BASE_URL, Button, Eye, EyeSlash, Field, FieldGroup, Input, Label, OIDCGroup } from "@/shared"
-import Link from "next/link"
+import { Button, Eye, EyeSlash, Field, FieldGroup, Input, Label, OIDCGroup } from "@/shared"
 import { useState } from "react"
 import { UseFormReturn } from "react-hook-form"
 

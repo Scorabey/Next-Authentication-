@@ -51,7 +51,7 @@ export const SignIn = ({
               </DialogDescription>
             </DialogHeader>
             <Separator/>
-            <SignInField form={form}/>
+            <SignInField form={form} setSignInOpenDialog={setSignInOpenDialog}/>
             <Separator/>
             <DialogFooter>
               <Button variant={"ghost"} onClick={() => setSignInOpenDialog(false)} title="Close dialog window">Close</Button>

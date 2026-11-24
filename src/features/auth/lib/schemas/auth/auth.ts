@@ -4,6 +4,7 @@ import { Dispatch, HTMLAttributes, ReactNode, SetStateAction } from "react";
 import { SignUpDto } from "../sign-up";
 import { UseFormReturn } from "react-hook-form";
 import { SignInDto } from "../sign-in";
+import { ForgotDto } from "../forgot";
 
 export interface buttonProps extends HTMLAttributes<HTMLButtonElement> {
   variant:
@@ -32,4 +33,9 @@ export interface ISignInContext {
     signInOpenDialog: boolean,
     setSignInOpenDialog: Dispatch<SetStateAction<boolean>>
   }
+}
+
+export interface IForgotContext {
+  mutation: UseMutationResult<unknown, AxiosError, ForgotDto>;
+  form: UseFormReturn<ForgotDto>
 }
