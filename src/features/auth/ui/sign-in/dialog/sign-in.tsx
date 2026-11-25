@@ -1,6 +1,6 @@
 'use client'
 
-import { Button, Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger, Spinner } from "@/shared";
+import { Button, CustomTooltip, Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger, Spinner } from "@/shared";
 import { buttonProps, SignInDto, useSignIn } from "@/features/auth";
 import { Separator } from "@/shared";
 import { SignInField } from "../field";
@@ -10,7 +10,7 @@ export const SignIn = ({
   className = "",
   children,
   variant = "default",
-  title,
+  ...props
 }: buttonProps) => {
   const { form, hooks, mutation } = useSignIn()
   const { signInOpenDialog, setSignInOpenDialog } = hooks
@@ -31,7 +31,7 @@ export const SignIn = ({
             <Button
               variant={variant}
               className={className}
-              title={title}
+              {...props}
             >
               {children}
             </Button>
@@ -54,16 +54,19 @@ export const SignIn = ({
             <SignInField form={form} setSignInOpenDialog={setSignInOpenDialog}/>
             <Separator/>
             <DialogFooter>
-              <Button variant={"ghost"} onClick={() => setSignInOpenDialog(false)} title="Close dialog window">Close</Button>
-              <Button
-                type="submit"
-                variant={"default"}
-                title="Sign-in application"
-                disabled={isPending}
-                className={isPending ? "cursor-progress" : ""}
-              >
-                {isPending ? <Spinner/> : 'Sign-In'}
-              </Button>
+              <CustomTooltip content={<p>Close dialog window</p>}>
+                <Button variant={"ghost"} onClick={() => setSignInOpenDialog(false)}>Close</Button>
+              </CustomTooltip>
+              <CustomTooltip content={<p>Sign-in application</p>}>
+                <Button
+                  type="submit"
+                  variant={"default"}
+                  disabled={isPending}
+                  className={isPending ? "cursor-progress" : ""}
+                >
+                  {isPending ? <Spinner/> : 'Sign-In'}
+                </Button>
+              </CustomTooltip>
             </DialogFooter>
           </form>
         </DialogContent>

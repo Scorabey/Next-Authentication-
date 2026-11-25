@@ -12,6 +12,7 @@ import {
   DialogClose,
   Separator,
   Spinner,
+  CustomTooltip,
 } from "@/shared";
 import { type SubmitHandler } from 'react-hook-form'
 import { SignUpDto, useSignUp } from "@/features/auth";
@@ -22,7 +23,7 @@ export const SignUp = ({
   className = "",
   children,
   variant = "default",
-  title
+  ...props
 }: buttonProps) => {
   const {
     mutation,
@@ -48,7 +49,7 @@ export const SignUp = ({
             <Button
               variant={variant}
               className={className}
-              title={title}
+              {...props}
             >
               {children}
             </Button>
@@ -72,16 +73,17 @@ export const SignUp = ({
             <SignUpField form={form}/>
           <Separator />
           <DialogFooter>
-            <DialogClose render={<Button variant="ghost" title="Close dialog window">Close</Button>} />
-            <Button 
-              type="submit"
-              variant={"default"}
-              title="Sign-up application"
-              disabled={isPending}
-              className={isPending ? "cursor-progress" : ""}
-            >
-              {isPending ? <Spinner/> : 'Sign-Up'}
-            </Button>
+            <DialogClose render={<CustomTooltip content={<p>Close dialog window</p>}><Button variant="ghost">Close</Button></CustomTooltip>} />
+            <CustomTooltip content={<p>Sign-up application</p>}>
+              <Button 
+                type="submit"
+                variant={"default"}
+                disabled={isPending}
+                className={isPending ? "cursor-progress" : ""}
+              >
+                {isPending ? <Spinner/> : 'Sign-Up'}
+              </Button>
+            </CustomTooltip>
           </DialogFooter>
           </form>
         </DialogContent>

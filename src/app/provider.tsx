@@ -1,6 +1,7 @@
 'use client'
 
 import { AuthProvider } from '@/features/auth';
+import { TooltipProvider } from '@/shared';
 import { isServer, QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { ThemeProvider } from 'next-themes'
@@ -34,9 +35,11 @@ export default function Providers({ children }: { children: ReactNode }) {
     return (
         <QueryClientProvider client={queryClient}>
             <ThemeProvider attribute={'class'} defaultTheme='light' enableSystem>
-                <AuthProvider>
-                    {children}
-                </AuthProvider>
+                <TooltipProvider>
+                    <AuthProvider>
+                        {children}
+                    </AuthProvider>
+                </TooltipProvider>
             </ThemeProvider>
             <ReactQueryDevtools initialIsOpen={false}/>
         </QueryClientProvider>

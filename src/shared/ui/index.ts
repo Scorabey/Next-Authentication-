@@ -10,3 +10,4 @@ export * from './spinner';
 export * from './oidc-group';
 export * from './card';
 export * from './toast';
+export * from './tooltip';

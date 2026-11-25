@@ -4,9 +4,10 @@ import { Button as ButtonPrimitive } from "@base-ui/react/button"
 import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "cn"
 import { useTheme } from "next-themes"
-import { useEffect, useState } from "react"
+import { HTMLAttributes, ReactElement, useEffect, useState } from "react"
 import { MoonIcon, SunIcon } from "./icons"
 import { useBurgerToggle } from "../lib"
+import CustomTooltip from "./tooltip"
 
 const themeIcons = cva("stroke-2 stroke-background")
 
@@ -75,17 +76,17 @@ function ThemeToggle({
     setMounted(true)
   }, [])
 
-  if(!mounted) return <div className="h-6 w-6" />
-
   return (
     <ButtonPrimitive
       data-slot="button"
       className={cn(buttonVariants({ variant, size, className }), "rounded-full")}
+      {...props}
       onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
       aria-label="toggle-theme"
-      {...props}
     >
-      {resolvedTheme === "dark" ? <SunIcon className={"stroke-foreground"} /> : <MoonIcon className={"stroke-foreground"} />}
+      {mounted 
+      ? (resolvedTheme === "dark" ? <SunIcon className={"stroke-foreground"} /> : <MoonIcon className={"stroke-foreground"} />)
+      : (<span className="size-4" />)}
     </ButtonPrimitive>
   )
 }
@@ -111,4 +112,23 @@ function BurgerButton({
   )
 }
 
-export { Button, buttonVariants, ThemeToggle, BurgerButton }
+interface ButtonProps extends HTMLAttributes<HTMLButtonElement> {
+  variant: "ghost" | "default" | "secondary" | "destructive" | "destructive" | "destructive"
+  side?: "bottom" | "left" | "right" | "top" | "inline-end" | "inline-start"
+  toolTipContent: ReactElement
+}
+
+const EyeButton = ({ onClick, children, toolTipContent, side }: ButtonProps) => {
+    return (
+        <CustomTooltip content={toolTipContent} side={side}>
+            <Button
+                variant={"ghost"}
+                onClick={onClick}
+            >
+                {children}
+            </Button>
+        </CustomTooltip>
+    )
+}
+
+export { Button, buttonVariants, ThemeToggle, BurgerButton, EyeButton }

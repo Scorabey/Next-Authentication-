@@ -2,6 +2,7 @@
 
 import { Tooltip as TooltipPrimitive } from "@base-ui/react/tooltip"
 import { cn } from "cn"
+import { ReactElement, ReactNode } from "react"
 
 function TooltipProvider({
   delay = 0,
@@ -62,4 +63,20 @@ function TooltipContent({
   )
 }
 
-export { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider }
+type Side = "bottom" | "left" | "right" | "top" | "inline-end" | "inline-start"
+interface ICustomTooltip {
+  children?: ReactElement,
+  content?: ReactElement,
+  side?: Side
+}
+
+export default function CustomTooltip({ children, content, side }: ICustomTooltip) {
+  return (
+    <Tooltip>
+      <TooltipTrigger render={children}/>
+      <TooltipContent side={side}>{content}</TooltipContent>
+    </Tooltip>
+  )
+}
+
+export { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider, CustomTooltip }
