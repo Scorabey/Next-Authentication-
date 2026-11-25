@@ -9,7 +9,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
 import { AxiosError } from "axios";
 import { ResetApi } from "../../api";
-import { INPUT_MODE } from "@/shared";
+import { INPUT_MODE, toast } from "@/shared";
 
 const resetApi = new ResetApi()
 
@@ -30,6 +30,10 @@ export function ResetProvider({ children }: { children: ReactNode }) {
         mutationFn: (dto: Omit<ResetDto, "confirm">) => resetApi.reset(dto),
         onSuccess: () => {
             resetForm.reset()
+            toast.add({
+                description: "Password reset was successfully",
+                type: "success"
+            })
             router.push("/auth/sign-in")
         },
         onError: (error) => {

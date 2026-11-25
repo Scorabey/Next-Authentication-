@@ -3,6 +3,7 @@ import { Geist, Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/shared/lib/utils";
 import Providers from "./provider";
+import { Toaster } from "@/shared";
 
 const inter = Inter({subsets:['latin'],variable:'--font-sans'});
 
@@ -31,6 +32,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body className="h-full">
         <Providers>
           {children}
+          <Toaster/>
         </Providers>
       </body>
     </html>

@@ -9,7 +9,7 @@ import { AxiosError } from "axios";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
-import { INPUT_MODE } from "@/shared";
+import { INPUT_MODE, toast } from "@/shared";
 
 const forgotApi = new ForgotApi()
 
@@ -28,6 +28,10 @@ export function ForgotProvider({ children }: { children: ReactNode }) {
         mutationFn: (dto: ForgotDto) => forgotApi.forgot(dto),
         onSuccess: () => {
             forgotForm.reset()
+            toast.add({
+                description: "Check your link.",
+                type: "info",
+            })
             router.push('/auth/sign-in')
         },
         onError: (error) => {

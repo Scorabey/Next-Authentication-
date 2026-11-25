@@ -9,7 +9,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { AxiosError } from "axios";
 import { useRouter } from "next/navigation";
-import { INPUT_MODE } from "@/shared";
+import { INPUT_MODE, toast, TOAST_TIMEOUT } from "@/shared";
 
 const signInApi = new SignInApi()
 
@@ -31,6 +31,12 @@ export function SignInProvider({ children }: { children: ReactNode }) {
         mutationFn: (dto: SignInDto) => signInApi.signIn(dto),
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ['me'] })
+            toast.add({
+                title: "Sign-In",
+                description: "Login was successfully",
+                type: "success",
+                timeout: TOAST_TIMEOUT
+            });
             closeDialog()
         },
         onError: (error) => {
