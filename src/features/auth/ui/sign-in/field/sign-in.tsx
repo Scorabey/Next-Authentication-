@@ -1,7 +1,7 @@
 'use client'
 
 import { SignInDto } from "@/features/auth"
-import { BASE_URL, Button, Eye, EyeSlash, Field, FieldGroup, Input, Label, OIDCGroup } from "@/shared"
+import { BASE_URL, Button, CustomTooltip, Eye, EyeButton, EyeSlash, Field, FieldGroup, Input, Label, OIDCGroup } from "@/shared"
 import Link from "next/link"
 import { Dispatch, SetStateAction, useState } from "react"
 import { UseFormReturn } from "react-hook-form"
@@ -27,12 +27,13 @@ export const SignInField = ({ form, setSignInOpenDialog }: ISignInField) => {
             <Label htmlFor="email">
             Email<span className="text-base text-red-400">*</span>
             </Label>
-            <Input
-            id="email"
-            placeholder="example@gmail.com"
-            title="Enter your email"
-            {...register("email", { required: "Email is required" })}
-            />
+            <CustomTooltip content={<p>Enter your email</p>}>
+                <Input
+                id="email"
+                placeholder="example@gmail.com"
+                {...register("email", { required: "Email is required" })}
+                />
+            </CustomTooltip>
             <p className="text-base text-red-400" style={{ display: errors.email ? "block" : "none" }}>{errors.email ? errors.email.message : ""}</p>
         </Field>
         <Field>
@@ -42,22 +43,24 @@ export const SignInField = ({ form, setSignInOpenDialog }: ISignInField) => {
             <div
             className="flex flex-row gap-1"
             >
-            <Input
-                id="password"
-                type={eye.passwordEye ? "text" : "password"}
-                placeholder="Enter password..."
-                title="Enter your password"
-                {...register("password", { required: "Password is required" })}
-            />
-            <Button
+            <CustomTooltip content={<p>Enter your password</p>}>
+                <Input
+                    id="password"
+                    type={eye.passwordEye ? "text" : "password"}
+                    placeholder="Enter password..."
+                    {...register("password", { required: "Password is required" })}
+                />
+            </CustomTooltip>
+            <EyeButton
                 variant={"ghost"}
+                toolTipContent={<p>See password</p>}
                 onClick={() => setEye(prev => ({
-                confirmEye: prev.confirmEye,
-                passwordEye: !prev.passwordEye
-                }))}
-            >
+                    confirmEye: prev.confirmEye,
+                    passwordEye: !prev.passwordEye
+                    }))}
+                >
                 {eye.passwordEye ? <Eye className="stroke-foreground size-4"/> : <EyeSlash className="stroke-foreground size-4"/>}
-            </Button>
+            </EyeButton>
             </div>
             <Link
                 href={'/auth/forgot'}

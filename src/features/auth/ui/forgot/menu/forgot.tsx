@@ -1,6 +1,6 @@
 'use client'
 
-import { Button, Card, CardAction, CardContent, CardDescription, CardFooter, CardHeader, CardTitle, Spinner } from "@/shared"
+import { Button, Card, CardAction, CardContent, CardDescription, CardFooter, CardHeader, CardTitle, CustomTooltip, Spinner } from "@/shared"
 import { ForgotField } from "../field"
 import Link from "next/link"
 import { ForgotDto, useForgot } from "@/features/auth/lib"
@@ -30,12 +30,13 @@ export const ForgotMenu = () => {
                     <br/>and we'll send you a link to reset your password.
                 </CardDescription>
                 <CardAction>
-                    <Link
-                        href={'/auth/sign-in'}
-                        title="Go to sign-in"
-                    >
-                        <Button variant={"ghost"}>Sign-In</Button>
-                    </Link>
+                    <CustomTooltip content={<p>Go to sign-in</p>}>
+                        <Link
+                            href={'/auth/sign-in'}
+                        >
+                            <Button variant={"ghost"}>Sign-In</Button>
+                        </Link>
+                    </CustomTooltip>
                 </CardAction>
             </CardHeader>
             <CardContent>
@@ -44,15 +45,16 @@ export const ForgotMenu = () => {
             <CardFooter
                 className="flex flex-row gap-1 w-full justify-end"
             >
-                <Button
-                    type="submit"
-                    variant={"default"}
-                    title="Submit and find email"
-                    disabled={isPending}
-                    className={isPending ? "cursor-progress" : ""}
-                >
-                {isPending ? <Spinner/> : 'Submiit'}
-              </Button>
+                <CustomTooltip content={<p>Submit and find email</p>}>
+                    <Button
+                        type="submit"
+                        variant={"default"}
+                        disabled={isPending}
+                        className={isPending ? "cursor-progress" : ""}
+                    >
+                        {isPending ? <Spinner/> : 'Submiit'}
+                    </Button>
+                </CustomTooltip>
             </CardFooter>
         </Card>
         </form>

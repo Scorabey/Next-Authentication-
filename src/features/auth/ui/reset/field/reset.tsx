@@ -1,7 +1,7 @@
 'use client'
 
 import { ResetDto } from "@/features/auth/lib"
-import { Button, Eye, EyeSlash, Field, FieldGroup, Input, Label } from "@/shared"
+import { Button, CustomTooltip, Eye, EyeButton, EyeSlash, Field, FieldGroup, Input, Label } from "@/shared"
 import { useState } from "react"
 import { UseFormReturn } from "react-hook-form"
 
@@ -14,7 +14,9 @@ export const ResetField = ({ form }: { form:UseFormReturn<ResetDto> }) => {
     const { register, formState: { errors } } = form
 
     return (
-        <FieldGroup>
+        <FieldGroup
+            className="flex flex-col gap-3"
+        >
         <Field>
             <Label htmlFor="password">
             Password<span className="text-base text-red-400">*</span>
@@ -22,23 +24,25 @@ export const ResetField = ({ form }: { form:UseFormReturn<ResetDto> }) => {
             <div
             className="flex flex-row gap-1"
             >
-            <Input
-                id="password"
-                type={eye.passwordEye ? "text" : "password"}
-                placeholder="Enter password..."
-                aria-invalid={errors.password ? "true" : "false"}
-                title="Enter your password"
-                {...register("password", { required: "Password is required" })}
-            />
-            <Button
+            <CustomTooltip content={<p>Enter your password</p>}>
+                <Input
+                    id="password"
+                    type={eye.passwordEye ? "text" : "password"}
+                    placeholder="Enter password..."
+                    aria-invalid={errors.password ? "true" : "false"}
+                    {...register("password", { required: "Password is required" })}
+                />
+            </CustomTooltip>
+            <EyeButton
+                toolTipContent={<p>See password</p>}
                 variant={"ghost"}
                 onClick={() => setEye(prev => ({
                 confirmEye: prev.confirmEye,
                 passwordEye: !prev.passwordEye
                 }))}
             >
-                {eye.passwordEye ? <Eye className="stroke-foreground size-4"/> : <EyeSlash className="stroke-foreground size-4"/>}
-            </Button>
+                {eye.confirmEye ? <Eye className="stroke-foreground size-4"/> : <EyeSlash className="stroke-foreground size-4"/>}
+            </EyeButton>
             </div>
             <p className="text-base text-red-400" style={{ display: errors.password ? "block" : "none" }}>{errors.password ? errors.password.message : ""}</p>
         </Field>
@@ -49,15 +53,17 @@ export const ResetField = ({ form }: { form:UseFormReturn<ResetDto> }) => {
             <div
             className="flex flex-row gap-1"
             >
-            <Input
-                id="confirm"
-                type={eye.confirmEye ? "text" : "password"}
-                placeholder="Confirm password..."
-                aria-invalid={errors.password ? "true" : "false"}
-                title="Confirm the password"
-                {...register("confirm", { required: "Password is required" })}
-            />
-            <Button
+            <CustomTooltip content={<p>Confirm the password</p>}>
+                <Input
+                    id="confirm"
+                    type={eye.confirmEye ? "text" : "password"}
+                    placeholder="Confirm password..."
+                    aria-invalid={errors.password ? "true" : "false"}
+                    {...register("confirm", { required: "Password is required" })}
+                />
+            </CustomTooltip>
+            <EyeButton
+                toolTipContent={<p>See confirm</p>}
                 variant={"ghost"}
                 onClick={() => setEye(prev => ({
                 confirmEye: !prev.confirmEye,
@@ -65,7 +71,7 @@ export const ResetField = ({ form }: { form:UseFormReturn<ResetDto> }) => {
                 }))}
             >
                 {eye.confirmEye ? <Eye className="stroke-foreground size-4"/> : <EyeSlash className="stroke-foreground size-4"/>}
-            </Button>
+            </EyeButton>
             </div>
             <p className="text-base text-red-400" style={{ display: errors.confirm ? "block" : "none" }}>{errors.confirm ? errors.confirm.message : ""}</p>
             <p className="text-base text-red-400" style={{ display: errors.form ? "block" : "none" }}>{errors.form ? errors.form.message : ""}</p>
