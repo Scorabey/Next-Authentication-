@@ -29,7 +29,7 @@ export function ForgotProvider({ children }: { children: ReactNode }) {
         onSuccess: () => {
             forgotForm.reset()
             toast.add({
-                description: "Check your link.",
+                description: "Check your mail.",
                 type: "info",
             })
             router.push('/auth/sign-in')

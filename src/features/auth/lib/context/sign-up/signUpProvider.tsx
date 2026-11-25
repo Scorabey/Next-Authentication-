@@ -42,6 +42,12 @@ export function SignUpProvider({ children }: { children: ReactNode }) {
         type: "success",
         timeout: TOAST_TIMEOUT
       });
+      toast.add({
+        title: "Email",
+        description: "Check your mail.",
+        type: "info",
+        timeout: TOAST_TIMEOUT
+      });
       closeDialog();
     },
     onError: (error) => {
