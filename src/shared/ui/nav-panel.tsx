@@ -1,66 +1,40 @@
 import Link from "next/link"
-import { Button } from "./button"
+import { Button, ButtonProps } from "./button"
 
-interface NavPanelProps {
-    className: string
+interface link {
+    href: string
+    content: string
 }
 
-export const NavPanel = ({ className }: NavPanelProps) => {
+const links: link[] = [
+    { href: '/', content: 'Home' },
+    { href: '/community', content: 'Community' },
+    { href: '/profile', content: 'Profile' },
+    { href: '/auth/sign-in', content: 'Sign-In' },
+    { href: '/auth/sign-up', content: 'Sign-Up' },
+    { href: '/auth/mail', content: 'Mail' },
+]
+
+export const NavPanel = ({ className, variant = "link", ...props }: ButtonProps) => {
 
     return (
         <nav
             className="hidden md:flex flex-row"
         >
-            <Link
-                href={"/"}
-            >
-                <Button
-                    variant={"link"}
-                    className={className}
+            {links.map((link, index) => (
+                <Link
+                    href={link.href}
+                    key={index}
                 >
-                    Home
-                </Button>
-            </Link>
-            <Link
-                href={"/community"}
-            >
-                <Button
-                    variant={"link"}
-                    className={className}
-                >
-                    Community
-                </Button>
-            </Link>
-            <Link
-                href={"/profile"}
-            >
-                <Button
-                    variant={"link"}
-                    className={className}
-                >
-                    Profile
-                </Button>
-            </Link>
-            <Link
-                href={"/auth/sign-in"}
-            >
-                <Button
-                    variant={"link"}
-                    className={className}
-                >
-                    Sign-In
-                </Button>
-            </Link>
-            <Link
-                href={"/auth/sign-up"}
-            >
-                <Button
-                    variant={"link"}
-                    className={className}
-                >
-                    Sign-Up
-                </Button>
-            </Link>
+                    <Button
+                        variant={variant}
+                        className={className}
+                        {...props}
+                    >
+                        {link.content}
+                    </Button>
+                </Link>
+            ))}
         </nav>
     )
 }
