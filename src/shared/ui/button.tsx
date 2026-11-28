@@ -122,6 +122,7 @@ const EyeButton = ({ onClick, variant = "ghost", children, toolTipContent, side 
     return (
         <CustomTooltip content={toolTipContent} side={side}>
             <Button
+                type="button"
                 variant={variant}
                 onClick={onClick}
             >

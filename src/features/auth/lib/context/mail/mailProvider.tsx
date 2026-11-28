@@ -12,7 +12,7 @@ const mailApi = new MailApi();
 
 export function MailProvider({ children }: { children: ReactNode }) {
     const verifyMutation = useMutation<unknown, AxiosError, MailDto>({
-        mutationKey: ['me'],
+        mutationKey: ['mail', 'verify'],
         mutationFn: (dto: MailDto) => mailApi.verify(dto),
         onSuccess: () => {
             toast.add({
@@ -40,6 +40,7 @@ export function MailProvider({ children }: { children: ReactNode }) {
     )
 
     const verificationMutation = useMutation<unknown, AxiosError, void>({
+        mutationKey: ['mail', 'verification'],
         mutationFn: () => mailApi.verification(),
         onSuccess: () => {
             toast.add({

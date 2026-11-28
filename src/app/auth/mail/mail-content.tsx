@@ -1,3 +1,4 @@
+import { MailMenu } from "@/features/auth";
 import { notFound } from "next/navigation";
 
 export default async function MailContent({
@@ -9,5 +10,5 @@ export default async function MailContent({
 
   if (!token) notFound()
 
-    return <h1>{token}</h1>
+    return <MailMenu token={token}/>
 }
