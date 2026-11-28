@@ -1,10 +1,10 @@
 'use client'
 
 import { SignInDto } from "@/features/auth"
-import { BASE_URL, Button, CustomTooltip, Eye, EyeButton, EyeSlash, Field, FieldGroup, Input, Label, OIDCGroup } from "@/shared"
+import { Button, CustomTooltip, Eye, EyeButton, EyeSlash, Field, FieldGroup, Input, Label, OIDCGroup } from "@/shared"
 import Link from "next/link"
 import { Dispatch, SetStateAction, useState } from "react"
-import { UseFormReturn } from "react-hook-form"
+import { Controller, UseFormReturn } from "react-hook-form"
 
 interface ISignInField {
     form: UseFormReturn<SignInDto>
@@ -28,10 +28,17 @@ export const SignInField = ({ form, setSignInOpenDialog }: ISignInField) => {
             Email<span className="text-base text-red-400">*</span>
             </Label>
             <CustomTooltip content={<p>Enter your email</p>}>
-                <Input
-                id="email"
-                placeholder="example@gmail.com"
-                {...register("email", { required: "Email is required" })}
+                <Controller
+                    name="email"
+                    rules={{ required: "Email is required" }}
+                    control={form.control}
+                    render={({ field }) => (
+                        <Input
+                        id="email"
+                        placeholder="example@gmail.com"
+                        {...field}
+                        />
+                    )}
                 />
             </CustomTooltip>
             <p className="text-base text-red-400" style={{ display: errors.email ? "block" : "none" }}>{errors.email ? errors.email.message : ""}</p>
@@ -44,11 +51,18 @@ export const SignInField = ({ form, setSignInOpenDialog }: ISignInField) => {
             className="flex flex-row gap-1"
             >
             <CustomTooltip content={<p>Enter your password</p>}>
-                <Input
-                    id="password"
-                    type={eye.passwordEye ? "text" : "password"}
-                    placeholder="Enter password..."
-                    {...register("password", { required: "Password is required" })}
+                <Controller
+                    name="password"
+                    rules={{ required: "Password is required" }}
+                    control={form.control}
+                    render={({ field }) => (
+                        <Input
+                        id="password"
+                        type={eye.passwordEye ? "text" : "password"}
+                        placeholder="Enter password..."
+                        {...field}
+                        />
+                    )}
                 />
             </CustomTooltip>
             <EyeButton

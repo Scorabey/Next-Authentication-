@@ -5,3 +5,5 @@ export * from "./x-mark";
 export * from "./eye";
 export * from "./google";
 export * from "./logo";
+export * from "./check-badge";
+export * from "./x-badge";
